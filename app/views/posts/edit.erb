@@ -1,0 +1,18 @@
+<% if @errors %>
+  <span>Something went wrong:</span>
+  <ul class="error-list pad-b-2">
+    <% @errors.each do |error| %>
+      <li class="error-item"><%= error %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<form method="post" action="/posts">
+  <label for="title" class="">Title:</label>
+  <input id="title-input" name="posts[:title]" type="text" value="<%= @posts.try(:title) %>" tabindex="1" class="">
+
+  <label for="question-textarea" class="block mar-b-1">Question:</label>
+  <textarea id="question-textarea" name="posts[:question]" tabindex="" class=""><%= @posts.try(:body) %></textarea>
+
+  <input type="submit" value="Publish" tabindex="3" class="">
+</form>

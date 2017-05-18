@@ -1,6 +1,6 @@
 get '/posts' do
   @post = posts.most_recent
-  erb :'entries/index'
+  erb :'posts/index'
 end
 
 post '/posts' do
