@@ -14,10 +14,7 @@ end
   comment = answer.comment.create!(body: Faker::RickAndMorty.quote)
 end
 
-5.times do
-
-
 
 50.times do
-  vote = 
+  vote = user.vote.commment.create!(upvote: Faker::Boolean.boolean)
 end
