@@ -1,12 +1,12 @@
 class CreateAnswers < ActiveRecord::Migration
   def change
-        create_table :answers do |t|
-      t.boolean :best_answer?
+    create_table :answers do |t|
       t.text :body, :null => false
+      t.boolean :best_answer
+      t.references :post
+      t.references :user
 
       t.timestamps(null: false)
     end
-    add_foreign_key :post, :class_name => Post
-    add_foreign_key :answer, :class_name => Answer
   end
 end
