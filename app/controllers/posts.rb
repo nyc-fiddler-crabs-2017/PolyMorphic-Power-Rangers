@@ -1,12 +1,12 @@
 get '/posts' do
-  @post = posts.most_recent
-  erb :'posts/index'
+  @posts = posts.most_recent
+  erb :'users/index'
 end
 
 post '/posts' do
   binding.pry
   @posts = current_user.posts.create(params[:posts])
-  @current = current_user.find(@posts.user_id)
+  @current = current_user.find(@posts)
   @current.username
   if @posts.save
     redirect "/posts/#{@posts.id}"
@@ -20,7 +20,7 @@ get '/posts/new' do
   if current_user
     erb :'posts/new'
   else
-    erb :'404'
+    erb :'users/_errors'
   end
 end
 
@@ -42,12 +42,12 @@ end
 
 delete '/posts/:id' do
 end
-  @posts = find_and_ensure_[posts](params[:id])
+  @posts = find_and_verify[posts](params[:id])
   @posts.destroy
   redirect '/posts'
 end
 
 get '/posts/:id/edit' do
-  @posts = find_and_ensure_[posts](params[:id])
+  @posts = find_and_verify[posts](params[:id])
   erb :'posts/edit'
 end
