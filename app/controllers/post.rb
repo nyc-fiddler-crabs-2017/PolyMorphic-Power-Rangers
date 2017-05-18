@@ -3,7 +3,7 @@ get '/posts' do
   erb :'entries/index'
 end
 
-post '/entries' do
+post '/posts' do
   binding.pry
   @posts = current_user.posts.create(params[:posts])
   @current = current_user.find(@posts.user_id)
