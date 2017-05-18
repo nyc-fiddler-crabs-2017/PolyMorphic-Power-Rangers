@@ -1,5 +1,5 @@
 get '/' do
- "redirect to sessions"
+ erb :'/sessions/redirect'
 end
 
 
