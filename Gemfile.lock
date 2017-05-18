@@ -99,7 +99,7 @@ DEPENDENCIES
   bcrypt
   capybara
   factory_girl
-  faker
+  faker (~> 1.7.3)
   pg
   pry
   rack-test
