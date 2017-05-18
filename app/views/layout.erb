@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- 
+  <!--
     normalize.css removes cross-browser differences in defaults, e.g.,
     differences in how form elements appear between Firefox and IE
     See: http://necolas.github.com/normalize.css/
@@ -18,6 +18,26 @@
   <title></title>
 </head>
 <body>
-  <%= yield %>
+  <header role="" class="">
+    <div class="">
+      <nav class="">
+        <ul class="">
+          <li class="">
+          <% if current_user %>
+            <%= current_user.username %>
+            <% else %>
+            <a href="/users/new">register</a>
+            <% end %>
+          </li>
+          <li class="">
+            <% if current_user %>
+            <a href="/logout">logout</a>
+            <% else %>
+            <a href="/users/login/new">login</a>
+            <% end %>
+          </li>
+          <li class=""><a   href="/">home</a></li>
+        </ul>
+      </nav>
 </body>
 </html>
