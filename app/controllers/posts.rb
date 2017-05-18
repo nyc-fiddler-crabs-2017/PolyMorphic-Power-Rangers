@@ -41,13 +41,12 @@ put '/posts/:id' do
 end
 
 delete '/posts/:id' do
-end
-  @posts = find_and_verify[posts](params[:id])
+  @posts = find_and_verify_post(params[:id])
   @posts.destroy
   redirect '/posts'
 end
 
 get '/posts/:id/edit' do
-  @posts = find_and_verify[posts](params[:id])
+  @posts = find_and_verify_post(params[:id])
   erb :'posts/edit'
 end
