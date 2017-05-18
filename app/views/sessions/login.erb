@@ -1,16 +1,21 @@
 <%= erb :'_errors' %>
 
-<form action="/login" method="post">
-  <label>Display Name:</label>
-  <input type="text" name="name">
-  <br>
-  <label>Email (required, but never shown)</label>
-  <input type="text" name="email">
+<form action="/sessions/login" method="post">
+  <label>Username</label>
+  <input type="text" name="user[username]">
   <br>
   <label>Password</label>
-  <input type="password" name="password_hash">
+  <input type="password" name="user[password]">
   <br>
   <input type="submit" value="Login">
 </form>
 
 <a href="/users">Sign up</a>
+
+
+
+<!-- first_name: "Madaline",
+last_name: "Meleys",
+username: "Lucy",
+email: "cullen_trantow@rau.info",
+password: password -->

@@ -17,3 +17,8 @@ end
 get "/users" do
   "user profile page"
 end
+
+get '/users/:id' do
+
+  erb :'users/show'
+end
