@@ -15,25 +15,25 @@ end
 
 # Create Comments on Posts
 10.times do
-  Comment.create(body: Faker::Hacker.say_something_smart, commentable_id: rand(1..15) , commentable_type: "Post")
+  Comment.create(body: Faker::Hacker.say_something_smart, commentable_id: rand(1..15) , commentable_type: "Post", commenter_id: rand(1..20))
 end
 
 # Create Comments on Answers
 10.times do
-  Comment.create(body: Faker::Hacker.say_something_smart, commentable_id: rand(1..15) , commentable_type: "Answer")
+  Comment.create(body: Faker::Hacker.say_something_smart, commentable_id: rand(1..15) , commentable_type: "Answer", commenter_id: rand(1..20))
 end
 
 # Create Votes on Answers
 15.times do
-  Vote.create(upvote: Faker::Boolean.boolean, votable_id: rand(1..15), votable_type: "Answer")
+  Vote.create(upvote: Faker::Boolean.boolean, votable_id: rand(1..15), votable_type: "Answer", user_id: rand(1..20))
 end
 
 # Create Votes on Posts
 15.times do
-  Vote.create(upvote: Faker::Boolean.boolean, votable_id: rand(1..15), votable_type: "Post")
+  Vote.create(upvote: Faker::Boolean.boolean, votable_id: rand(1..15), votable_type: "Post", user_id: rand(1..20))
 end
 
 # Create Votes on Comments
 15.times do
-  Vote.create(upvote: Faker::Boolean.boolean, votable_id: rand(1..15), votable_type: "Comment")
+  Vote.create(upvote: Faker::Boolean.boolean, votable_id: rand(1..15), votable_type: "Comment", user_id: rand(1..20))
 end
