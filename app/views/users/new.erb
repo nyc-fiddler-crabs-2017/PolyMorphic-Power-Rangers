@@ -1,0 +1,17 @@
+<%= erb :'_errors' %>
+
+<form action="/users" method="post">
+  <label>Fullname:</label>
+  <input type="text" name="user[full_name]">
+  <br>
+  <label>Username:</label>
+  <input type="text" name="user[user_name]">
+  <br>
+  <label>Email:</label>
+  <input type="text" name="user[email]">
+  <br>
+  <label>Password:</label>
+  <input type="password" name="password_hash">
+  <br>
+  <input type="submit" value="Login">
+</form>
