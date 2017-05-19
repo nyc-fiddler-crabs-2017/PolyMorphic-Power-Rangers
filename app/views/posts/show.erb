@@ -1,11 +1,31 @@
+
 <h5><%= @posts.title %></h5>
+
+
+<form action="/posts/<%= @posts.id %>/upvote" method="post">
+  <button type="submit">Up</button>
+</form>
+
+
+
+<h5><span style="color: red"><%= @posts.votes.count - @posts.votes.where(upvote: false).count  %></span>  <%= @posts.title %></h5>
+
+
+
+<form action="/posts/<%= @posts.id %>/downvote" method="post">
+  <button type="submit">Down</button>
+</form>
+
+
 
 <p><%= @posts.question %></p>
 
 <h3></h3>
 <ul>
   <% @posts.answers.each do |answer| %>
-    <li class= "answer"><%= answer.answerer %> - <%= answer.body %></li>
+
+    <li class= "answer"><%= answer.answerer.username %> - <%= answer.body %></li>
+
   <% end %>
 </ul>
 
