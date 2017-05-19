@@ -47,7 +47,14 @@ end
 
 
 get 'answers/:id/comments/new' do
-  post.answer
+  @answer = Answer.find(params[:answer_id])
 
   erb :'comments/new'
+end
+
+ post 'answers/:id/comments/' do
+  @answer = Answer.find(params[:answer_id])
+  @answer.comments.create(body: params[comments])
+
+  redirect 'post id'
 end
