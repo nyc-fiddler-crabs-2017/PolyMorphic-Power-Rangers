@@ -1,6 +1,6 @@
 <%= erb :'users/_errors' %>
 
-<form method="post" action="/posts">
+<form method="post" action="/">
   <label for="title" class="">Title:</label>
   <input id="title-input" name="posts[:title]" type="text" value="<%= @posts.try(:title) %>" tabindex="1" class="">
 
