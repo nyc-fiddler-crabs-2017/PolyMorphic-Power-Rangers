@@ -4,6 +4,7 @@ end
 
 post "/users" do
   @user = User.new(params[:user])
+
   if @user.save?
     @channels = @user.channels
     session[:user_id] = @user.id
