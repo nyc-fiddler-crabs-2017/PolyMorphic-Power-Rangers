@@ -12,7 +12,7 @@
 
 
 
-<h5><span style="color: red"><%= @posts.count_votes  %></span>  <%= @posts.title %></h5>
+<h5><span style="color: red"><%= @posts.votes.count - @posts.votes.where(upvote: false).count  %></span>  <%= @posts.title %></h5>
 
 
 

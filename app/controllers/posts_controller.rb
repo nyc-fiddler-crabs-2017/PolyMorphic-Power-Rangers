@@ -64,15 +64,36 @@ end
 
 
 post '/posts/:id/upvote' do
+  ensure_login_access
   post = Post.find(params[:id])
-  binding.pry
-  post.votes.create(upvote: true)
+  user = User.find(session[:user_id])
+
+  if post.votes.where(upvote: true, user_id: user.id).count == 0
+    if post.votes.where(upvote: false, user_id: user.id).count != 0
+      post.votes.find_by(upvote: false, user_id: user.id).update_attributes(upvote: true)
+    end
+    post.votes.create(upvote: true, user_id: user.id)
+    post.votes.where(upvote: false).last.destroy
+  else
+    post.votes.find_by(upvote: true, user_id: user.id).destroy
+  end
   redirect "/posts/#{post.id}"
 end
 
 
 post '/posts/:id/downvote' do
   post = Post.find(params[:id])
-  post.votes.create(upvote: false)
+  user = User.find(session[:user_id])
+
+  if post.votes.where(upvote: false, user_id: user.id).count == 0
+    if post.votes.where(upvote: true, user_id: user.id).count != 0
+      post.votes.find_by(upvote: true, user_id: user.id).update_attributes(upvote: false)
+    end
+    post.votes.create(upvote: false, user_id: user.id)
+    post.votes.where(upvote: true).last.destroy
+  else
+    post.votes.find_by(upvote: false, user_id: user.id).destroy
+  end
+
   redirect "/posts/#{post.id}"
 end
