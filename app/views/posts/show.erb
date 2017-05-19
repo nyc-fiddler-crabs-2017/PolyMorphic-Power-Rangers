@@ -1,4 +1,34 @@
-<h5><%= @posts.title %></h5>
+
+
+
+
+
+
+
+
+<form action="/posts/<%= @posts.id %>/upvote" method="post">
+  <button type="submit">Up</button>
+</form>
+
+
+
+<h5><span style="color: red"><%= @posts.count_votes  %></span>  <%= @posts.title %></h5>
+
+
+
+<form action="/posts/<%= @posts.id %>/downvote" method="post">
+  <button type="submit">Down</button>
+</form>
+
+
+
+
+
+
+
+
+
+
 
 <p><%= @posts.question %></p>
 

@@ -56,3 +56,23 @@ delete '/posts/:id' do
   @posts.destroy
   redirect '/posts'
 end
+
+
+
+
+
+
+
+post '/posts/:id/upvote' do
+  post = Post.find(params[:id])
+  binding.pry
+  post.votes.create(upvote: true)
+  redirect "/posts/#{post.id}"
+end
+
+
+post '/posts/:id/downvote' do
+  post = Post.find(params[:id])
+  post.votes.create(upvote: false)
+  redirect "/posts/#{post.id}"
+end
