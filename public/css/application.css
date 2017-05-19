@@ -16,3 +16,7 @@ body {
 .self-margin-button {
   margin-bottom: 15px;
 }
+
+.self-margin-header {
+  margin-top: 10px;
+}
