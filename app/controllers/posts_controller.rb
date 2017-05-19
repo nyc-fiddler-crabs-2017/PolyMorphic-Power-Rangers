@@ -8,11 +8,6 @@ get '/posts/new' do
   erb :'posts/new'
 end
 
-get '/posts/new' do
-  ensure_login_access
-  erb :'posts/new'
-end
-
 post '/posts' do
   # binding.pry
   ensure_login_access
@@ -58,5 +53,5 @@ end
 delete '/posts/:id' do
   @posts = find_and_ensure_post(params[:id])
   @posts.destroy
-  redirect '/posts'
+  redirect '/'
 end
