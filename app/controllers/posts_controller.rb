@@ -27,6 +27,7 @@ post '/posts' do
 end
 
 get '/posts/:id' do
+  # binding.pry
   ensure_login_access
   @posts = find_and_ensure_post(params[:id])
   @current_user = current_user
@@ -45,7 +46,6 @@ get '/posts/:id/edit' do
 end
 
 put '/posts/:id' do
-  # binding.pry
   @posts = find_and_ensure_post(params[:id])
   @posts.assign_attributes(params[:posts])
 

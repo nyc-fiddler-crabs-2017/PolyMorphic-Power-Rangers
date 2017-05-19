@@ -2,6 +2,13 @@
 
 <p><%= @posts.question %></p>
 
+<h3></h3>
+<ul>
+  <% @posts.answers.each do |answer| %>
+    <li><%= answer.answerer %> - <%= answer.body %></li>
+  <% end %>
+</ul>
+
 <ul class="">
 <% if current_user %>
     <a href="/posts/<%= @posts.id %>/edit" class="">edit</a>

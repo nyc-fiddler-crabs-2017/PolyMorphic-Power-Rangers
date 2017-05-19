@@ -14,7 +14,7 @@ post '/sessions/login' do
     redirect '/'
   else
     @errors = ["Email and Password do not match our records."]
-    erb :'users/login'
+    erb :'sessions/login'
   end
 end
 

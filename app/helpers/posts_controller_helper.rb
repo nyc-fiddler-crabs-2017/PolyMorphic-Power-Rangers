@@ -20,9 +20,9 @@ helpers do
   def ensure_login_access
     if logged_in? == false
       halt(404, erb(:_errors))
+    else
+      return "penis"
     end
   end
 
 end
-
-
