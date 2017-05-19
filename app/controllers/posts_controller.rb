@@ -22,8 +22,12 @@ post '/posts' do
 end
 
 get '/posts/:id' do
+  # binding.pry
   @posts = find_and_ensure_post(params[:id])
   @current_user = current_user
+  # @answers = @posts.answers.all
+
+  # binding.pry
   erb :'/posts/show'
 end
 

@@ -26,7 +26,7 @@
 </button>
 </form>
 
-<form action='/posts/<%= @posts.id %>/answers/new' method='post'>
+<form action='/posts/<%= @posts.id %>/answers/new'>
 <button class="" type="submit">Answer
       <i class="material-icons right"></i>
 </button>
@@ -35,13 +35,16 @@
 <h3></h3>
 <ul>
   <% @posts.answers.each do |answer| %>
+    <li class= "answer"><%= answer.answerer.username %> - <%= answer.body %></li>
 
-    <li class= "answer"><%= answer.answerer.username %> - <%= answer.body %>
+    <% p answer.answerer %>
+    <% p "!"*30 %>
+
       <span><form action='/answers/<%= answer.id %>/comments/new' method='post'>
-<button class="" type="submit">Comment
+      <button class="" type="submit">Comment
       <i class="material-icons right"></i>
-</button>
-</form></span>
+    </button>
+  </form></span>
 
   <% end %>
 </ul>
