@@ -4,13 +4,13 @@
 
 <ul class="">
 <% if current_user %>
-    <a href="/posts<%= @posts.id %>/edit" class="">edit</a>
+    <a href="/posts/<%= @posts.id %>/edit" class="">edit</a>
 <% end %>
   </li>
 
   <li class="">
 <% if current_user %>
-    <form method="post" action="/posts<%= @posts.id %>" class="">
+    <form method="post" action="/posts/<%= @posts.id %>" class="">
       <input type="hidden" name="_method" value="delete">
       <input type="submit" value="delete" class="">
     </form>

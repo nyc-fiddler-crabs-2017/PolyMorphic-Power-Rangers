@@ -4,10 +4,9 @@ get '/posts' do
 end
 
 post '/posts' do
-  binding.pry
-  @posts = current_user.posts.create(params[:posts])
-  @current = current_user.find(@posts)
-  @current.username
+  ensure_login_access
+  @posts = Post.new(params[:posts])
+
   if @posts.save
     redirect "/posts/#{@posts.id}"
   else
@@ -17,21 +16,21 @@ post '/posts' do
 end
 
 get '/posts/new' do
-  if current_user
-    erb :'posts/new'
-  else
-    erb :'users/_errors'
-  end
+  ensure_login_access
+  erb :'posts/new'
 end
 
 get '/posts/:id' do
-  @posts = find_and_verify_post(params[:id])
+  ensure_login_access
+  @posts = find_and_ensure_post(params[:id])
+  @current_user = current_user
   erb :'posts/show'
 end
 
 put '/posts/:id' do
-  @posts = find_and_verify_post(params[:id])
-
+  @posts = find_and_ensure_post(params[:id])
+  @posts.assign_attributes(params[:posts])
+  
   if @posts.save
     redirect "posts/#{@posts.id}"
   else
@@ -41,12 +40,13 @@ put '/posts/:id' do
 end
 
 delete '/posts/:id' do
-  @posts = find_and_verify_post(params[:id])
+  @posts = find_and_ensure_post(params[:id])
   @posts.destroy
   redirect '/posts'
 end
 
 get '/posts/:id/edit' do
-  @posts = find_and_verify_post(params[:id])
+  @posts = find_and_ensure_post(params[:id])
   erb :'posts/edit'
 end
+
