@@ -1,11 +1,12 @@
-<%= erb :'users/_errors' %>
+<%= erb :'_errors' %>
 
-<form method="post" action="/posts">
+<form method="post" action="/posts/<%=@posts.id %>">
+  <input type="hidden" name="_method" value="put">
   <label for="title" class="">Title:</label>
-  <input id="title-input" name="posts[:title]" type="text" value="<%= @posts.try(:title) %>" tabindex="1" class="">
+  <input id="title-input" name="posts[title]" type="text" value="<%= @posts.try(:title) %>" tabindex="1" class="">
 
   <label for="question-textarea" class="">Question:</label>
-  <textarea id="question-textarea" name="posts[:question]" tabindex="3" class=""><%= @posts.try(:question) %></textarea>
+  <textarea rows ="4" cols="50" id="question-textarea" name="posts[question]" tabindex="3" class=""><%= @posts.try(:question) %></textarea>
 
   <input type="submit" value="submit" tabindex="3" class="">
 </form>

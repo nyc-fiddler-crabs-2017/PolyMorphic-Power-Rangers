@@ -1,6 +1,11 @@
 get '/posts' do
-  @posts = posts.most_recent
-  erb :'users/index'
+  @posts = Post.all
+  erb :'posts/index_test'
+end
+
+get '/posts/new' do
+  ensure_login_access
+  erb :'posts/new'
 end
 
 get '/posts/new' do
@@ -9,6 +14,7 @@ get '/posts/new' do
 end
 
 post '/posts' do
+  # binding.pry
   ensure_login_access
   @posts = Post.new(params[:posts])
 
@@ -32,7 +38,14 @@ get '/posts/:id/edit' do
   erb :'/posts/edit'
 end
 
+get '/posts/:id/edit' do
+  # binding.pry
+  @posts = find_and_ensure_post(params[:id])
+  erb :'posts/edit'
+end
+
 put '/posts/:id' do
+  # binding.pry
   @posts = find_and_ensure_post(params[:id])
   @posts.assign_attributes(params[:posts])
 
