@@ -8,13 +8,8 @@ get '/posts/new' do
   erb :'posts/new'
 end
 
-get '/posts/new' do
-  ensure_login_access
-  erb :'posts/new'
-end
-
 post '/posts' do
-  # binding.pry
+
   ensure_login_access
   @posts = Post.new(params[:posts])
 
@@ -27,8 +22,7 @@ post '/posts' do
 end
 
 get '/posts/:id' do
-  # binding.pry
-  ensure_login_access
+
   @posts = find_and_ensure_post(params[:id])
   @current_user = current_user
   erb :'/posts/show'
