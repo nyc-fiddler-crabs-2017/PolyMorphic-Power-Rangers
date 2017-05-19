@@ -1,13 +1,19 @@
 <%= erb :'_errors' %>
 
-<form action="/" method="post">
-  <label>Username</label>
-  <input type="text" name="user[username]">
-  <br>
-  <label>Password</label>
-  <input type="password" name="user[password]">
-  <br>
-  <button class="btn waves-effect waves-light" type="submit">Log In
+<form class="self-margin" action="/" method="post">
+  <div class="row">
+    <div class="input-field col s12">
+      <input id="username" type="text" class="validate" name="user[username]">
+      <label for="username">Username</label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="input-field col s12">
+      <input id="password" type="password" class="validate" name=user[password]>
+      <label for="password">Password</label>
+    </div>
+  </div>
+  <button class="btn waves-effect waves-light orange accent-4 self-margin-button " type="submit">Log In
     <i class="material-icons right"></i>
   </button>
 </form>

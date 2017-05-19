@@ -21,21 +21,10 @@
   <title></title>
 </head>
 <body>
-  <!--
-    <nav>
-      <a href="/">Home</a>
-      <% if logged_in? %>
-        <a href="/sessions/logout">Logout</a>
-        <a href="/users/<%=current_user.id%>"><%= current_user.first_name %></a>
-      <% else %>
-        <a href= '/sessions/login'> Log In </a>
-        <a href= '/users/new'> Register </a>
-      <% end %>
-    </nav> -->
     <div class="container">
     <nav>
-      <div class="nav-wrapper">
-        <a href="/" class="brand-logo">Stacks on StacksOverflow</a>
+      <div class="nav-wrapper orange accent-4">
+        <a href="/" class="brand-logo">&nbsp;&nbsp;Stacks on StacksOverflow</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
           <% if logged_in? %>
             <li><a href="/sessions/logout">Logout</a></li>
@@ -44,13 +33,42 @@
             <li><a href="/sessions/login"> Log In </a></li>
             <li><a href="/users/new"> Register </a></li>
           <% end %>
-        </ul>
       </div>
+      </ul><br><br>
     </nav>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
-    <script src="/js/application.js"></script>
     <%= yield %>
+
+    <footer class="page-footer orange accent-4">
+      <div class="container">
+        <div class="row">
+          <div class="col l6 s12">
+            <h5 class="white-text">Footer Content</h5>
+            <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+          </div>
+          <div class="orange accent-4 col l4 offset-l2 s12">
+            <h5 class="white-text">Created By:</h5>
+            <ul>
+              <li><a class="grey-text text-lighten-3" href="#!">Carlos Grijalva</a></li>
+              <li><a class="grey-text text-lighten-3" href="#!">Kyle McDonald</a></li>
+              <li><a class="grey-text text-lighten-3" href="#!">Alex Persaud</a></li>
+              <li><a class="grey-text text-lighten-3" href="#!">Carlo Francisco</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-copyright">
+        <div class="container">
+        © 2017 WAZZZZUP
+        <a class="grey-text text-lighten-4 right" href="http://www.stackoverflow.com">More Links</a>
+        </div>
+      </div>
+    </footer>
+
+
+
   </div>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+  <script src="/js/application.js"></script>
 </body>
 </html>
