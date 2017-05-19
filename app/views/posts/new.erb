@@ -1,11 +1,24 @@
-<%= erb :'users/_errors' %>
+<%= erb :'_errors' %>
 
-<form method="post" action="/">
-  <label for="title" class="">Title:</label>
-  <input id="title-input" name="posts[:title]" type="text" value="<%= @posts.try(:title) %>" tabindex="1" class="">
+<form class="self-margin" action="/posts" method="post" >
 
-  <label for="question-textarea" class="">Question:</label>
-  <textarea id="question-textarea" name="posts[:question]" tabindex="3" class=""><%= @posts.try(:question) %></textarea>
+  <div class="input-field col s12 m6">
+    <input type="text" class="validate" name="posts[title]" >
+    <label for="first_name">Title</label>
+  </div>
 
-  <input type="submit" value="submit" tabindex="3" class="">
+
+  <div class="row">
+      <div class="row">
+        <div class="input-field col s12 m6">
+          <textarea id="textarea1" class="materialize-textarea" name="posts[question]" ></textarea>
+          <label for="textarea1">Question</label>
+        </div>
+      </div>
+  </div>
+
+  <button class="btn waves-effect waves-light orange accent-4 col m4 s10 self-margin-button " type="submit">Submit
+    <i class="material-icons right"></i>
+  </button>
+
 </form>

@@ -1,27 +1,9 @@
 <%= erb :'_errors' %>
-<!--
-<form action="/users" method="post">
-  <label>First Name:</label>
-  <input type="text" name="user[first_name]">
-  <br>
-  <label>Last Name:</label>
-  <input type="text" name="user[last_name]">
-  <br>
-  <label>Display name:</label>
-  <input type="text" name="user[username]">
-  <br>
-  <label>Email:</label>
-  <input type="text" name="user[email]">
-  <br>
-  <label>Password:</label>
-  <input type="password" name="user[password]">
-  <br>
-  <input type="submit" value="Login">
-</form> -->
-
 
 <div class="row">
-  <form class="col s12" action="/" method="post">
+
+  <form class="col s12 self-margin" action="/users" method="post">
+
     <div class="row">
       <div class="input-field col s12 m6">
         <input id="first_name" type="text" class="validate" name="user[first_name]">

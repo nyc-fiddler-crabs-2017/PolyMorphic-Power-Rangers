@@ -1,14 +1,16 @@
+<div class="row">
+   <h3 class="col s7">Top Questions </h3><h5><a class="col s5 self-margin-header" href="/posts/new">Post a new Question</a></h5>
+</div>
 <% @posts.each do |post| %>
   <div>
     <p>
-      <span>
+
         <span style="color: red"><%= post.count_votes  %></span>
         <%= post.count_votes == 1 ? "Vote" : "Votes" %>
-      </span>
-      <span>
+
         <span style="color: red"><%= post.count_answers %></span>
         <%= post.count_answers == 1 ? "Answer" : "Answers"%>
-      </span>
+
       <a href="/posts/<%= post.id %>"><%= post.title %></a>
     </p>
   </div>
