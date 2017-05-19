@@ -2,12 +2,31 @@
 
 <p><%= @posts.question %></p>
 
+<form action='/posts/<%= @posts.id %>/comments/new' method="post">
+<button class="" type="submit">Comment
+      <i class="material-icons right"></i>
+</button>
+</form>
+
+<form action='/posts/<%= @posts.id %>/answers/new' method='post'>
+<button class="" type="submit">Answer
+      <i class="material-icons right"></i>
+</button>
+</form>
+
 <h3></h3>
 <ul>
   <% @posts.answers.each do |answer| %>
-    <li><%= answer.answerer.username %> - <%= answer.body %></li>
+    <li><%= answer.answerer.username %> - <%= answer.body %>
+      <span><form action='/answers/<%= answer.id %>/comments/new' method='post'>
+<button class="" type="submit">Comment
+      <i class="material-icons right"></i>
+</button>
+</form></span>
   <% end %>
 </ul>
+
+
 
 <ul class="">
 <% if current_user %>
