@@ -1,9 +1,5 @@
 
-
-
-
-
-
+<h5><%= @posts.title %></h5>
 
 
 <form action="/posts/<%= @posts.id %>/upvote" method="post">
@@ -22,20 +18,14 @@
 
 
 
-
-
-
-
-
-
-
-
 <p><%= @posts.question %></p>
 
 <h3></h3>
 <ul>
   <% @posts.answers.each do |answer| %>
-    <li><%= answer.answerer.username %> - <%= answer.body %></li>
+
+    <li class= "answer"><%= answer.answerer.username %> - <%= answer.body %></li>
+
   <% end %>
 </ul>
 

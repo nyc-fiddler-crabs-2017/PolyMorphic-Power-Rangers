@@ -22,7 +22,6 @@ post '/posts' do
 end
 
 get '/posts/:id' do
-
   @posts = find_and_ensure_post(params[:id])
   @current_user = current_user
   erb :'/posts/show'
@@ -54,7 +53,7 @@ end
 delete '/posts/:id' do
   @posts = find_and_ensure_post(params[:id])
   @posts.destroy
-  redirect '/posts'
+  redirect '/'
 end
 
 

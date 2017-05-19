@@ -16,3 +16,12 @@ body {
 .self-margin-button {
   margin-bottom: 15px;
 }
+
+.self-margin-header {
+  margin-top: 10px;
+}
+
+.answer {
+  padding-top: 10px;
+  border-bottom: 1px solid grey;
+}
