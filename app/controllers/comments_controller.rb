@@ -12,9 +12,11 @@ end
 
 post '/posts/:post_id/comments' do
   @post = Post.find(params[:post_id])
-  @comment = @post.comments.new(params[:comment])
+  @user = current_user
+  @comment = @post.comments.new(body: params[:comment], commenter: @user)
+  # binding.pry
   if @comment.save
-    redirect "/posts/#{@post.id}/comments"
+    redirect "/posts/#{@post.id}"
   else
     erb :'comments/new'
   end
