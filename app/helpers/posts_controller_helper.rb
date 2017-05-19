@@ -1,4 +1,4 @@
-module PostsControllerHelper
+helpers do
   def find_and_ensure_post(id)
     posts = Post.find_by(id: id)
     halt(404, erb(:_errors)) if posts.nil?
@@ -25,4 +25,4 @@ module PostsControllerHelper
 
 end
 
-helpers PostsControllerHelper
+
