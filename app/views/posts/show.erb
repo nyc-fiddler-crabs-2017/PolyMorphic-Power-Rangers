@@ -1,11 +1,11 @@
-<h1><%= @posts.title %></h1>
+<h5><%= @posts.title %></h5>
 
 <p><%= @posts.question %></p>
 
 <h3></h3>
 <ul>
   <% @posts.answers.each do |answer| %>
-    <li><%= answer.answerer %> - <%= answer.body %></li>
+    <li><%= answer.answerer.username %> - <%= answer.body %></li>
   <% end %>
 </ul>
 
