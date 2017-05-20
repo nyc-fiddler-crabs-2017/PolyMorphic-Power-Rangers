@@ -19,6 +19,7 @@ GEM
     backports (3.8.0)
     bcrypt (3.1.11)
     builder (3.2.3)
+    byebug (9.0.6)
     capybara (2.14.0)
       addressable
       mime-types (>= 1.16)
@@ -47,6 +48,9 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
+    pry-byebug (3.4.2)
+      byebug (~> 9.0)
+      pry (~> 0.10)
     public_suffix (2.0.5)
     rack (1.6.8)
     rack-protection (1.5.3)
@@ -102,6 +106,7 @@ DEPENDENCIES
   faker (~> 1.7.3)
   pg
   pry
+  pry-byebug
   rack-test
   rake
   rspec (~> 3.0)
@@ -111,4 +116,4 @@ DEPENDENCIES
   sinatra-contrib
 
 BUNDLED WITH
-   1.13.6
+   1.14.6

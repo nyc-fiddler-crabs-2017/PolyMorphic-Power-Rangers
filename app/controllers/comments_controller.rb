@@ -11,6 +11,7 @@ get '/posts/:post_id/comments/new' do
 end
 
 post '/posts/:post_id/comments' do
+  # binding.pry
   @post = Post.find(params[:post_id])
   @user = current_user
   @comment = @post.comments.new(body: params[:comment], commenter: @user)
@@ -43,4 +44,17 @@ delete '/posts/:post_id/comments/:id' do
   @comment = @post.comments.find(params[:id])
   @comment.destroy
   redirect "/posts/#{@post.id}/comments"
+end
+
+get '/answers/:answer_id/comments/new' do
+  @answer = Answer.find(params[:answer_id])
+  erb :'answers/comments/new'
+end
+
+ post '/answers/:answer_id/comments' do
+  @answer = Answer.find(params[:answer_id])
+  @answer.comments.create(body: params[:comment])
+  @answer.post_id
+
+  redirect "/posts/#{@answer.post_id}"
 end
