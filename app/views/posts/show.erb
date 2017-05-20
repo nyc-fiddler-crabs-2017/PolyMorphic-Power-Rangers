@@ -48,13 +48,19 @@
 <h3></h3>
 <ul>
   <% @posts.answers.each do |answer| %>
+    <li class= "answer"><%= answer.answerer.username %> - <%= answer.body %></li>
+
+    <% p answer.answerer %>
+    <% p "!"*30 %>
+
 
     <li class= "answer"><%= answer.answerer.username %> - <%= answer.body %>
       <span><form action='/answers/<%= answer.id %>/comments/new'>
 <button class="" type="submit">Comment
+
       <i class="material-icons right"></i>
-</button>
-</form></span>
+    </button>
+  </form></span>
 
   <% end %>
 </ul>
