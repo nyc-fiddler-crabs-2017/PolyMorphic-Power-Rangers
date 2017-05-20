@@ -1,6 +1,8 @@
 get '/posts/:post_id/answers/new' do
+
   # binding.pry
   @post = Post.find(params[:post_id])
+
   erb :'answers/new'
 end
 
@@ -8,6 +10,7 @@ post '/posts/:post_id/answers' do
   @post = Post.find(params[:post_id])
   @user = current_user
   @answer = @post.answers.new(body: params[:answer], answerer: @user)
+
   if @answer.save
     redirect "/posts/#{@post.id}"
   else
@@ -38,3 +41,4 @@ delete '/posts/:post_id/answers/:id' do
   @answer.destroy
   redirect "/posts/#{@post.id}/answers"
 end
+

@@ -31,7 +31,7 @@ end
 
 put '/posts/:post_id/comments/:id' do
   @post = Post.find(params[:post_id])
-  @comment = @post.comments.find(params[:id])
+  @comment = @post.comments.find(params[:body])
   if @comment.update_attributes(params[:comment])
     redirect "/posts/#{@post.id}/comments"
   else
@@ -45,6 +45,7 @@ delete '/posts/:post_id/comments/:id' do
   @comment.destroy
   redirect "/posts/#{@post.id}/comments"
 end
+
 
 get '/answers/:answer_id/comments/new' do
   @answer = Answer.find(params[:answer_id])
@@ -62,4 +63,5 @@ end
   else 
     erb :'answers/comments/new'
   end
+
 end
