@@ -52,7 +52,7 @@
     <li class= "answer"><%= answer.answerer.username %> - <%= answer.body %>
     <li class= "answer_comments">
       <%answer.comments.each do |comment| %> 
-       <%= comment.body %><br>
+      <%=comment.commenter.username %> - <%= comment.body %><br>
       <% end %>
     </li>
 

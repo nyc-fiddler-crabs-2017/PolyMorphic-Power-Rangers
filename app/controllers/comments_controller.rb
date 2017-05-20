@@ -52,9 +52,14 @@ get '/answers/:answer_id/comments/new' do
 end
 
  post '/answers/:answer_id/comments' do
+  # binding.pry 
   @answer = Answer.find(params[:answer_id])
-  @answer.comments.create(body: params[:comment])
+  @user = current_user
+  @answer.comments.new(body: params[:comment], commenter: @user)
   @answer.post_id
-
-  redirect "/posts/#{@answer.post_id}"
+  if @answer.comments.save
+    redirect "/posts/#{@answer.post_id}"
+  else 
+    erb :'answers/comments/new'
+  end
 end
