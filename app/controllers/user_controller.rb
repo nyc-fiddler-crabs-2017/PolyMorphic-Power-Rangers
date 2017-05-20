@@ -13,11 +13,12 @@ post "/users" do
   end
 end
 
-get "/users" do
-  "user profile page"
-end
+# get "/users" do
+#   "user profile page"
+# end
 
 get '/users/:id' do
-
+  @user = User.find(params[:id])
+  @posts = Post.where(creator: @user)
   erb :'users/show'
 end

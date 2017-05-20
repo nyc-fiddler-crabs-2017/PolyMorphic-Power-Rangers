@@ -1,29 +1,22 @@
 
-<h5><%= @posts.title %></h5>
-
 
 <form action="/posts/<%= @posts.id %>/upvote" method="post">
-  <button type="submit">Up</button>
+  <button class="button" type="submit"><img src="http://i.imgur.com/nFn8U6a.png" width="20" height="20"></button>
 </form>
 
 <h5><span style="color: red"><%= @posts.votes.where(upvote: true).count  - @posts.votes.where(upvote: false).count  %></span>  <%= @posts.title %></h5>
 
 <form action="/posts/<%= @posts.id %>/downvote" method="post">
-  <button type="submit">Down</button>
+  <button class="button" type="submit"><img src="http://i.imgur.com/16qUuO5.png" width="20" height="20"></button>
 </form>
 
-
-
-<p><%= @posts.question %></p>
+<p>asked by <a href="/users/<%= @posts.creator.id %>"><%= @posts.creator.username %></a></p>
 
 <form action='/posts/<%= @posts.id %>/comments/new'>
 <button class="" type="submit">Comment
       <i class="material-icons right"></i>
 </button>
 </form>
-
-
-
 
 <ul>
  <% @posts.comments.each do |comment| %>
