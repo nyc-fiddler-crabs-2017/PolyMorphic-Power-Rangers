@@ -5,7 +5,7 @@
   <div>
     <p>
 
-        <span style="color: red"><%= post.count_votes  %></span>
+        <span style="color: red"><%= post.votes.where(upvote: true).count  - post.votes.where(upvote: false).count  %></span>
         <%= post.count_votes == 1 ? "Vote" : "Votes" %>
 
         <span style="color: red"><%= post.count_answers %></span>
