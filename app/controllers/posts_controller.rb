@@ -12,7 +12,7 @@ post '/posts' do
 
   ensure_login_access
   @posts = Post.new(params[:posts])
-
+  @posts.update_attributes(creator: current_user)
   if @posts.save
     redirect "/posts/#{@posts.id}"
   else
@@ -66,9 +66,9 @@ post '/posts/:id/upvote' do
   if post.votes.where(upvote: true, user_id: user.id).count == 0
     if post.votes.where(upvote: false, user_id: user.id).count != 0
       post.votes.find_by(upvote: false, user_id: user.id).update_attributes(upvote: true)
+    else
+      post.votes.create(upvote: true, user_id: user.id)
     end
-    post.votes.create(upvote: true, user_id: user.id)
-    post.votes.where(upvote: false).last.destroy
   else
     post.votes.find_by(upvote: true, user_id: user.id).destroy
   end
@@ -83,12 +83,11 @@ post '/posts/:id/downvote' do
   if post.votes.where(upvote: false, user_id: user.id).count == 0
     if post.votes.where(upvote: true, user_id: user.id).count != 0
       post.votes.find_by(upvote: true, user_id: user.id).update_attributes(upvote: false)
+    else
+      post.votes.create(upvote: false, user_id: user.id)
     end
-    post.votes.create(upvote: false, user_id: user.id)
-    post.votes.where(upvote: true).last.destroy
   else
     post.votes.find_by(upvote: false, user_id: user.id).destroy
   end
-
   redirect "/posts/#{post.id}"
 end

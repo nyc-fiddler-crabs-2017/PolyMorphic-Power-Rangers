@@ -5,6 +5,7 @@
 </form>
 
 <h5><span style="color: red"><%= @posts.votes.where(upvote: true).count  - @posts.votes.where(upvote: false).count  %></span>  <%= @posts.title %></h5>
+<%= @posts.question %>
 
 <form action="/posts/<%= @posts.id %>/downvote" method="post">
   <button class="button" type="submit"><img src="http://i.imgur.com/16qUuO5.png" width="20" height="20"></button>
@@ -46,15 +47,22 @@
 <ul>
   <% @posts.answers.each do |answer| %>
     <li class= "answer"><%= answer.answerer.username %> - <%= answer.body %></li>
+    <ul>
+      <% if answer.comments %>
+        <% answer.comments.each do |comment| %>
+        <li>----------<%= comment.commenter.username %> - <%= comment.body %></li>
+        <% end %>
+      <% end %>
+    </ul>
     <% if current_user %>
-    <% if is_answer_creator?(answer.id, current_user.id) %>
-        <a href="/posts/<%= @posts.id %>/edit" class="">edit</a>
-    <% end %>
+      <% if is_answer_creator?(answer.id, current_user.id) %>
+          <a href="/posts/<%= @posts.id %>/edit" class="">edit</a>
+      <% end %>
     <% end %>
 
 
       <span><form action='/answers/<%= answer.id %>/comments/new'>
-<button class="" type="submit">Comment On This Answer
+        <button class="" type="submit">Comment On This Answer
 
       <i class="material-icons right"></i>
     </button>
@@ -70,7 +78,7 @@
   </li>
 
   <li class="">
-<% if current_user %>
+<% if is_post_creator?(@posts.id, current_user.id) %>
     <form method="post" action="/posts/<%= @posts.id %>" class="">
       <input type="hidden" name="_method" value="delete">
       <input type="submit" value="delete" class="">
