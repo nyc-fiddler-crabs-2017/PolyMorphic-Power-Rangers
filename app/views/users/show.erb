@@ -1,1 +1,10 @@
-Hello World
+<h1>Welcome to <%= @user.username %>'s Page!</h1>
+<h2>Here are some questions that he asked: </h2>
+<ol>
+
+<% @posts.each do |post| %>
+<li> <h4><a href="/posts/<%= post.id %>"> <%= post.title %></a></h4></li>
+<h5><%= post.question %></h5>
+<% end %>
+
+</ol>

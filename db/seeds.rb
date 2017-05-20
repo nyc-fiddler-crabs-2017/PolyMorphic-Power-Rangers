@@ -33,6 +33,10 @@ end
   Vote.create(upvote: Faker::Boolean.boolean, votable_id: rand(1..20), votable_type: "Post", user_id: rand(1..20))
 end
 
+500.times do
+  Vote.create(upvote: true, votable_id: rand(1..20), votable_type: "Post", user_id: rand(1..20))
+end
+
 # Create Votes on Comments
 50.times do
   Vote.create(upvote: Faker::Boolean.boolean, votable_id: rand(1..10), votable_type: "Comment", user_id: rand(1..20))
