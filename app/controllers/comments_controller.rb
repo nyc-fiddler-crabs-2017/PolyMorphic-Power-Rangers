@@ -6,6 +6,7 @@
 # end
 
 get '/posts/:post_id/comments/new' do
+ensure_login_access
   @post = Post.find(params[:post_id])
   erb :'comments/new'
 end
@@ -24,6 +25,7 @@ post '/posts/:post_id/comments' do
 end
 
 get '/posts/:post_id/comments/:id/edit' do
+  ensure_login_access
   @post = Post.find(params[:post_id])
   @comment = @post.comments.find(params[:id])
   erb :'comments/edit'
@@ -48,19 +50,20 @@ end
 
 
 get '/answers/:answer_id/comments/new' do
+  ensure_login_access
   @answer = Answer.find(params[:answer_id])
   erb :'answers/comments/new'
 end
 
  post '/answers/:answer_id/comments' do
-  # binding.pry 
+  # binding.pry
   @answer = Answer.find(params[:answer_id])
   @user = current_user
   @answer_comment = @answer.comments.new(body: params[:comment], commenter: @user)
   @answer.post_id
   if @answer_comment.save
     redirect "/posts/#{@answer.post_id}"
-  else 
+  else
     erb :'answers/comments/new'
   end
 

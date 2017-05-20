@@ -6,11 +6,7 @@
   <button type="submit">Up</button>
 </form>
 
-
-
-<h5><span style="color: red"><%= @posts.votes.count - @posts.votes.where(upvote: false).count  %></span>  <%= @posts.title %></h5>
-
-
+<h5><span style="color: red"><%= @posts.votes.where(upvote: true).count  - @posts.votes.where(upvote: false).count  %></span>  <%= @posts.title %></h5>
 
 <form action="/posts/<%= @posts.id %>/downvote" method="post">
   <button type="submit">Down</button>
@@ -26,43 +22,46 @@
 </button>
 </form>
 
-<form action='/posts/<%= @posts.id %>/answers/new'>
-<button class="" type="submit">Answer
-      <i class="material-icons right"></i>
-</button>
-</form>
+
 
 
 <ul>
  <% @posts.comments.each do |comment| %>
  <li class= "answer"><%= comment.commenter.username %> - <%= comment.body %>
+   <% if current_user %>
+   <% if is_answer_creator?(comment.id, current_user.id) %>
+
   <form action='/posts/<%= @posts.id %>/comments/<%= comment.id %>/edit'>
-<button class="" type="submit">Edit
+      <button class="" type="submit">Edit
       <i class="material-icons right"></i>
-</button>
-</form>
+      </button>
+    </form>
+    <% end %>
+    <% end %>
+
  <% end %>
 
 </ul>
 
-<h3></h3>
+<h3>ANSWERS</h3>
+
+<form action='/posts/<%= @posts.id %>/answers/new'>
+<button class="" type="submit">Submit Your Answer
+      <i class="material-icons right"></i>
+</button>
+</form>
 <ul>
   <% @posts.answers.each do |answer| %>
     <li class= "answer"><%= answer.answerer.username %> - <%= answer.body %></li>
+    <% if current_user %>
+    <% if is_answer_creator?(answer.id, current_user.id) %>
+        <a href="/posts/<%= @posts.id %>/edit" class="">edit</a>
+    <% end %>
+    <% end %>
 
-    <% p answer.answerer %>
-    <% p "!"*30 %>
-
-
-    <li class= "answer"><%= answer.answerer.username %> - <%= answer.body %>
-    <li class= "answer_comments">
-      <%answer.comments.each do |comment| %> 
-       <%= @answer_comment.commenter %><%= comment.body %><br>
-      <% end %>
-    </li>
 
       <span><form action='/answers/<%= answer.id %>/comments/new'>
-<button class="" type="submit">Comment
+<button class="" type="submit">Comment On This Answer
 
       <i class="material-icons right"></i>
     </button>
@@ -74,9 +73,7 @@
 
 
 <ul class="">
-<% if current_user %>
-    <a href="/posts/<%= @posts.id %>/edit" class="">edit</a>
-<% end %>
+
   </li>
 
   <li class="">

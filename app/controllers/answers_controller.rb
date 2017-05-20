@@ -1,8 +1,6 @@
 get '/posts/:post_id/answers/new' do
-
-  # binding.pry
+  ensure_login_access
   @post = Post.find(params[:post_id])
-
   erb :'answers/new'
 end
 
@@ -19,6 +17,7 @@ post '/posts/:post_id/answers' do
 end
 
 get '/posts/:post_id/answers/:id/edit' do
+  ensure_login_access
   @post = Post.find(params[:post_id])
   @answer = @post.answers.find(params[:id])
   erb :'answers/edit'
@@ -41,4 +40,3 @@ delete '/posts/:post_id/answers/:id' do
   @answer.destroy
   redirect "/posts/#{@post.id}/answers"
 end
-

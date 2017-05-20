@@ -77,9 +77,9 @@ end
 
 
 post '/posts/:id/downvote' do
+  ensure_login_access
   post = Post.find(params[:id])
   user = User.find(session[:user_id])
-
   if post.votes.where(upvote: false, user_id: user.id).count == 0
     if post.votes.where(upvote: true, user_id: user.id).count != 0
       post.votes.find_by(upvote: true, user_id: user.id).update_attributes(upvote: false)
