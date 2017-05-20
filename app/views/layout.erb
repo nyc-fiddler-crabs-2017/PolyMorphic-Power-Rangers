@@ -27,10 +27,10 @@
         <a href="/" class="brand-logo">&nbsp;&nbsp;Stacks on Stacks Overflow</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
           <% if logged_in? %>
-            <li><a href="/sessions/logout">Logout</a></li>
             <li><a href="/users/<%=current_user.id%>"><%= current_user.username %></a></li>
+            <li><a class="logout-button" href="/sessions/logout">Logout</a></li>
           <% else %>
-            <li><a href="/sessions/login"> Log In </a></li>
+            <li><a class="login-button" href="/sessions/login"> Log In </a></li>
             <li><a href="/users/new"> Register </a></li>
           <% end %>
       </div>
@@ -73,5 +73,6 @@
   crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
   <script src="/js/application.js"></script>
+  <script src="/js/login.js"></script>
 </body>
 </html>
