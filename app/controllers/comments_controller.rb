@@ -55,9 +55,9 @@ end
   # binding.pry 
   @answer = Answer.find(params[:answer_id])
   @user = current_user
-  @answer.comments.new(body: params[:comment], commenter: @user)
+  @answer_comment = @answer.comments.new(body: params[:comment], commenter: @user)
   @answer.post_id
-  if @answer.comments.save
+  if @answer_comment.save
     redirect "/posts/#{@answer.post_id}"
   else 
     erb :'answers/comments/new'
