@@ -26,7 +26,6 @@ get '/posts/:id' do
   @posts = find_and_ensure_post(params[:id])
   @current_user = current_user
 
-  # binding.pry
   erb :'/posts/show'
 end
 
@@ -58,12 +57,6 @@ delete '/posts/:id' do
   @posts.destroy
   redirect '/'
 end
-
-
-
-
-
-
 
 post '/posts/:id/upvote' do
   ensure_login_access

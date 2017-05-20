@@ -1,5 +1,6 @@
 get '/posts/:post_id/answers/new' do
 
+  # binding.pry
   @post = Post.find(params[:post_id])
 
   erb :'answers/new'
@@ -24,6 +25,7 @@ get '/posts/:post_id/answers/:id/edit' do
 end
 
 put '/posts/:post_id/answers/:id' do
+  # binding.pry
   @post = Post.find(params[:post_id])
   @answer = @post.answers.find(params[:body])
   if @answer.update_attributes(params[:answer])

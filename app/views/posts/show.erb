@@ -55,6 +55,12 @@
 
 
     <li class= "answer"><%= answer.answerer.username %> - <%= answer.body %>
+    <li class= "answer_comments">
+      <%answer.comments.each do |comment| %> 
+       <%= @answer_comment.commenter %><%= comment.body %><br>
+      <% end %>
+    </li>
+
       <span><form action='/answers/<%= answer.id %>/comments/new'>
 <button class="" type="submit">Comment
 
