@@ -10,16 +10,16 @@ post "/users" do
   @user = User.new(params[:user])
   if @user.save
     session[:user_id] = @user.id
-    redirect '/'
+    if request.xhr?
+      erb :_logged_in, layout: false
+    else
+      redirect '/'
+    end
   else
     @errors = ["Email already taken"]
-    erb :'/users/new'
+    redirect '/404'
   end
 end
-
-# get "/users" do
-#   "user profile page"
-# end
 
 get '/users/:id' do
   @user = User.find(params[:id])

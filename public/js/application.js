@@ -56,6 +56,7 @@ $(document).ready(function() {
       method: "get",
       url: 'posts/new'
     }).done(function(res){
+      
       console.log(res)
       $(".new-question-container").append(res)
     })

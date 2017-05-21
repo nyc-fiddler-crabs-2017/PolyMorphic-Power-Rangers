@@ -53,6 +53,26 @@ $(document).ready(function() {
       });
     });
 
+    $(".container").on("click", ".register-form-submit", function(event){
+      event.preventDefault();
+      var $data = $(this).parent().serialize();
+      // debugger;
+      $.ajax({
+        method: "post",
+        url: '/users',
+        data: $data
+      }).done(function(res){
+        if(res.includes("wrong")){
+          $(".errors").append(res);
+        }
+        $("nav").html(res);
+        $(".new-question-container").hide();
+        $(".register-form").hide();
+        
+      });
+    });
+
+
 
 
   // This is called after the document has loaded in its entirety
