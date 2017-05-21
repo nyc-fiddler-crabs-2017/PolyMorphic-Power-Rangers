@@ -1,7 +1,15 @@
 get '/posts/:post_id/answers/new' do
-  ensure_login_access
-  @post = Post.find(params[:post_id])
-  erb :'answers/new'
+  if logged_in?
+    @post = Post.find(params[:post_id])
+    if request.xhr?
+      erb :'answers/new', layout: false
+    else
+      erb :'answers/new'
+    end
+  else
+    "You need to log in if you want to comment!"
+  end
+  
 end
 
 post '/posts/:post_id/answers' do

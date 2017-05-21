@@ -1,5 +1,5 @@
 
-
+<div class="post-container"></div>
 <form action="/posts/<%= @posts.id %>/upvote" method="post">
   <button class="button" type="submit"><img src="http://i.imgur.com/nFn8U6a.png" width="20" height="20"></button>
 </form>
@@ -14,14 +14,14 @@
 <p>asked by <a href="/users/<%= @posts.creator.id %>"><%= @posts.creator.username %></a></p>
 
 <form action='/posts/<%= @posts.id %>/comments/new'>
-<button class="" type="submit">Comment
+<button class="comment-on-post btn waves-effect waves-light orange accent-4 self-margin-button" type="submit">Comment On This Question
       <i class="material-icons right"></i>
 </button>
 </form>
-
+<div class="comment-form-here"></div>
 <ul>
  <% @posts.comments.each do |comment| %>
- <li class= "answer"><%= comment.commenter.username %> - <%= comment.body %>
+ <li class= "answer"><a href="/users/<%= comment.commenter.id %>"><%= comment.commenter.username %></a> - <%= comment.body %>
    <% if current_user %>
    <% if is_answer_creator?(comment.id, current_user.id) %>
 
@@ -34,41 +34,37 @@
     <% end %>
 
  <% end %>
-
+</li>
 </ul>
 
 <h3>ANSWERS</h3>
 
 <form action='/posts/<%= @posts.id %>/answers/new'>
-<button class="" type="submit">Submit Your Answer
+<button class="answer-on-post btn waves-effect waves-light orange accent-4 self-margin-button" type="submit">Submit Your Answer
       <i class="material-icons right"></i>
 </button>
 </form>
+<div class="answer-form-here"></div>
+
 <ul>
   <% @posts.answers.each do |answer| %>
-    <li class= "answer"><%= answer.answerer.username %> - <%= answer.body %></li>
+    <li class= "answer"><a href="/users/<%= answer.answerer.id %>"><%= answer.answerer.username %></a> - <%= answer.body %></li>
     <ul>
       <% if answer.comments %>
         <% answer.comments.each do |comment| %>
-        <li>----------<%= comment.commenter.username %> - <%= comment.body %></li>
+        <li>----------<a href="/users/<%= comment.commenter.id %>"><%= comment.commenter.username %></a> - <%= comment.body %></li>
         <% end %>
       <% end %>
     </ul>
-    <% if current_user %>
-      <% if is_answer_creator?(answer.id, current_user.id) %>
-          <a href="/posts/<%= @posts.id %>/edit" class="">edit</a>
-      <% end %>
-    <% end %>
 
 
-      <span><form action='/answers/<%= answer.id %>/comments/new'>
-        <button class="" type="submit">Comment On This Answer
-
-      <i class="material-icons right"></i>
-    </button>
-  </form></span>
+      <form action='/answers/<%= answer.id %>/comments/new'>
+        <button class="comment-on-answer btn waves-effect waves-light orange accent-4 self-margin-button" type="submit">Comment On This Answer<i class="material-icons right"></i></button>
+      </form>
+      <div class="comment-form-here-2"></div>
 
   <% end %>
+
 </ul>
 
 
@@ -78,11 +74,13 @@
   </li>
 
   <li class="">
+<% if current_user %>
 <% if is_post_creator?(@posts.id, current_user.id) %>
     <form method="post" action="/posts/<%= @posts.id %>" class="">
       <input type="hidden" name="_method" value="delete">
-      <input type="submit" value="delete" class="">
+      <input type="submit" value="delete" class="btn waves-effect waves-light orange accent-4 self-margin-button">
     </form>
+ <% end %>
  <% end %>
   </li>
 </ul>

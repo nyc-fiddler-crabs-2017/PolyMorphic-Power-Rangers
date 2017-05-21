@@ -4,8 +4,17 @@ get '/posts' do
 end
 
 get '/posts/new' do
-  ensure_login_access
-  erb :'posts/new'
+  if logged_in?
+    if request.xhr?
+      erb :'posts/new', layout: false
+    else
+      erb :'posts/new'
+    end
+    
+    
+  else
+    "You need to be logged in to ask a question!"
+  end
 end
 
 post '/posts' do

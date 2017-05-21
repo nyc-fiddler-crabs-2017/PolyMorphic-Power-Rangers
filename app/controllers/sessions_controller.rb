@@ -22,11 +22,16 @@ post '/sessions/login' do
       end
   else
     @errors = ["Email and Password do not match our records."]
-    erb :'sessions/login'
+    redirect '/404'
+      
   end
 end
 
 get '/sessions/logout' do
   session.clear
   redirect '/'
+end
+
+get '/404' do
+  erb :'_404'
 end
