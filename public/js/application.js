@@ -54,9 +54,8 @@ $(document).ready(function() {
 
     $.ajax({
       method: "get",
-      url: 'posts/new'
+      url: '/posts/new'
     }).done(function(res){
-      console.log(res)
       $(".new-question-container").append(res)
     })
 
