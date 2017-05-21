@@ -3,14 +3,23 @@ get '/' do
 end
 
 get '/sessions/login' do
-  erb :'/sessions/login'
+  if request.xhr?
+    erb :'/sessions/login', layout: false
+  else
+    erb :'/sessions/login'
+  end
 end
 
 post '/sessions/login' do
   @user = User.find_by(username: params[:user][:username])
+  # binding.pry
   if @user && @user.authenticate(params[:user][:password])
-    session[:user_id] = @user.id
-    redirect '/'
+      session[:user_id] = @user.id
+      if request.xhr?
+        erb :_logged_in, layout: false
+      else
+        redirect '/'
+      end
   else
     @errors = ["Email and Password do not match our records."]
     erb :'sessions/login'

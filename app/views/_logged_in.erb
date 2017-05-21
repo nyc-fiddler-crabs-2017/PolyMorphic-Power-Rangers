@@ -1,0 +1,11 @@
+<div class="nav-wrapper orange accent-4">
+  <a href="/" class="brand-logo">&nbsp;&nbsp;Stacks on Stacks Overflow</a>
+  <ul id="nav-mobile" class="right hide-on-med-and-down">
+    <% if logged_in? %>
+      <li><a href="/users/<%=current_user.id%>"><%= current_user.username %></a></li>
+      <li><a class="logout-button" href="/sessions/logout">Logout</a></li>
+    <% else %>
+      <li><a class="login-button" href="/sessions/login"> Log In </a></li>
+      <li><a href="/users/new"> Register </a></li>
+    <% end %>
+</div>
