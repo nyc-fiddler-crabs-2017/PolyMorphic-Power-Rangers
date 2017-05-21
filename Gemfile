@@ -13,7 +13,7 @@ gem 'activerecord', '~>4.2.0'
 gem 'rake'
 gem 'pry'
 gem 'pry-byebug'
-gem 'bcrypt'
+gem 'bcrypt', git: 'https://github.com/codahale/bcrypt-ruby.git', :require => 'bcrypt'
 
 gem 'shotgun', '~>0.9.1'
 

@@ -2,16 +2,39 @@ $(document).ready(function() {
     $(".container").on("click", ".login-button", function(event){
       event.preventDefault();
       var button = this;
+      $(".register-append").children().hide();
+      $(".new-question-container").hide();
 
       $.ajax({
         method: 'get',
         url: '/sessions/login'
       }).done(function(res){
+        if($(".login-form").is(":visible")){
+          $(".login-form").hide();
+        }
         $(".login-append").append(res)
       })
     });
 
-    $(".container").on("click", ".login-button-2", function(event){
+    $(".container").on("click", ".register-button", function(event){
+      event.preventDefault();
+      var button = this;
+      $(".login-append").children().hide();
+      $(".new-question-container").hide();
+      $.ajax({
+        method: 'get',
+        url: '/users/new'
+      }).done(function(res){
+        if($(".register-form").is(":visible")){
+          $(".register-form").hide();
+        }
+        $(".register-append").append(res)
+      })
+    });
+
+
+
+    $(".container").on("click", ".login-form-submit", function(event){
       event.preventDefault();
       var $data = $(this).parent().serialize();
       // debugger;
@@ -20,9 +43,13 @@ $(document).ready(function() {
         url: '/sessions/login',
         data: $data
       }).done(function(res){
-        // debugger
+        if(res.includes("wrong")){
+          $(".errors").append(res);
+        }
         $("nav").html(res);
-        $(".login-append").hide();
+        $(".new-question-container").hide();
+        $(".login-form").hide();
+        
       });
     });
 

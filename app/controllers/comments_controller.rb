@@ -6,9 +6,16 @@
 # end
 
 get '/posts/:post_id/comments/new' do
-ensure_login_access
+if logged_in?
   @post = Post.find(params[:post_id])
-  erb :'comments/new'
+  if request.xhr?
+    erb :'comments/new', layout: false
+  else
+    erb :'comments/new'
+  end
+else
+  "You need to log in if you want to comment!"
+end
 end
 
 post '/posts/:post_id/comments' do
@@ -50,9 +57,17 @@ end
 
 
 get '/answers/:answer_id/comments/new' do
-  ensure_login_access
-  @answer = Answer.find(params[:answer_id])
-  erb :'answers/comments/new'
+  if logged_in?
+    @answer = Answer.find(params[:answer_id])
+    if request.xhr?
+      erb :'answers/comments/new', layout: false
+    else
+      erb :'answers/comments/new'
+    end
+    
+  else
+    "You need to be logged in to comment!"
+  end
 end
 
  post '/answers/:answer_id/comments' do
