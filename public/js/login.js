@@ -3,7 +3,6 @@ $(document).ready(function() {
       event.preventDefault();
       var button = this;
       $(".register-append").children().hide();
-      $(".new-question-container").hide();
 
       $.ajax({
         method: 'get',
@@ -20,7 +19,6 @@ $(document).ready(function() {
       event.preventDefault();
       var button = this;
       $(".login-append").children().hide();
-      $(".new-question-container").hide();
       $.ajax({
         method: 'get',
         url: '/users/new'
@@ -47,7 +45,6 @@ $(document).ready(function() {
           $(".errors").append(res);
         }
         $("nav").html(res);
-        $(".new-question-container").hide();
         $(".login-form").hide();
         
       });
@@ -66,7 +63,6 @@ $(document).ready(function() {
           $(".errors").append(res);
         }
         $("nav").html(res);
-        $(".new-question-container").hide();
         $(".register-form").hide();
         
       });

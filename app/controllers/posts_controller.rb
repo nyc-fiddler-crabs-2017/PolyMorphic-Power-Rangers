@@ -10,8 +10,6 @@ get '/posts/new' do
     else
       erb :'posts/new'
     end
-    
-    
   else
     "You need to be logged in to ask a question!"
   end
